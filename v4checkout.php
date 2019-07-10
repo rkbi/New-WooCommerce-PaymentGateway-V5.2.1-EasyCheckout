@@ -43,6 +43,7 @@
 
 	# REQUEST SEND TO SSLCOMMERZ
 	$direct_api_url                 = $sslc_data['api_url'];
+	$api_type                 		= $sslc_data['type'];
 
 	$handle = curl_init();
 	curl_setopt($handle, CURLOPT_URL, $direct_api_url );
@@ -70,19 +71,29 @@
 	# PARSE THE JSON RESPONSE
 	$sslcz = json_decode($sslcommerzResponse, true );
 
-// 	echo "<pre>";
+	// echo "<pre>";
     
-// 	var_dump($sslcz); exit;
+	// var_dump($sslcz); exit;
 
 	// $sessionkey = $sslcz['sessionkey'];
 
 	if(isset($sslcz['GatewayPageURL']) && $sslcz['GatewayPageURL']!="") {
 		// this is important to show the popup, return or echo to sent json response back
-		echo json_encode(['status' => 'SUCCESS', 'data' => $sslcz['GatewayPageURL'], 'logo' => $sslcz['storeLogo'] ]);
-		exit;
+		if($api_type == "no")
+		{
+			echo json_encode(['status' => 'SUCCESS', 'data' => $sslcz['GatewayPageURL'], 'logo' => $sslcz['storeLogo'] ]);
+			
+			exit;
+		}
+		else if($api_type == "yes")
+		{
+			echo json_encode(['status' => 'success', 'data' => $sslcz['GatewayPageURL'], 'logo' => $sslcz['storeLogo'] ]);
+			exit;
+		}
+		
 	   //return json_encode(['status' => 'SUCCESS', 'data' => $sslcz['GatewayPageURL'], 'logo' => $sslcz['storeLogo'] ]);
 	} else {
-	   return json_encode(['status' => 'FAILED', 'data' => null, 'message' => "JSON Data parsing error!"]);
+	   echo json_encode(['status' => 'FAILED', 'data' => null, 'message' => "JSON Data parsing error!"]);
 	}
                             	
 

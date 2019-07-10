@@ -187,6 +187,11 @@ function woocommerce_sslcommerz_init()
         
         function button($order)
         {
+            if ($this->testmode == 'yes') {
+                $jsurl = "https://sandbox.sslcommerz.com/embed.min.js?";
+            } else {
+                $jsurl = "https://seamless-epay.sslcommerz.com/embed.min.js?";
+            }
             $post_data = json_encode($this->generate_sslcommerz_form($order));
             ?>
                 <button class="button alt" id="sslczPayBtn"
@@ -197,10 +202,11 @@ function woocommerce_sslcommerz_init()
                 </button>
                 <button class="button cancel">Cancel</button>
                 <script type="text/javascript">
+                    var url = <?php echo "'$jsurl'"; ?>;
                     (function (window, document) {
                         var loader = function () {
                             var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-                            script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+                            script.src =  url+ Math.random().toString(36).substring(7);
                             tag.parentNode.insertBefore(script, tag);
                         };
                     
@@ -238,8 +244,10 @@ function woocommerce_sslcommerz_init()
             
             if ($this->testmode == 'yes') {
                 $liveurl = $this->testurl;
+                $sandbox = 'yes';
             } else {
                 $liveurl = $this->liveurl;
+                $sandbox = 'no';
             }
 
             //NEW V4 HOSTED API OF SSLCOMMERZ
@@ -273,7 +281,8 @@ function woocommerce_sslcommerz_init()
                 'num_of_item'       => $woocommerce->cart->cart_contents_count,
                 'product_name'      => $product_name,
                 'product_profile'   => 'general',
-                'api_url'           => $liveurl
+                'api_url'           => $liveurl,
+                'type'              => $sandbox
             );
             
             return $post_data;
