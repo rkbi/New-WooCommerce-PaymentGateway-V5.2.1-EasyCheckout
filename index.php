@@ -116,7 +116,6 @@ function woocommerce_sslcommerz_init()
                 ),
             );
         }
-
         public function admin_options()
         {
             echo '<h3>' . __('SSLCommerz Payment Gateway', 'sslcommerz') . '</h3>';
