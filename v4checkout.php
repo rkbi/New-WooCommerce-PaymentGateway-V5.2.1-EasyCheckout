@@ -93,7 +93,8 @@
 		
 	   //return json_encode(['status' => 'SUCCESS', 'data' => $sslcz['GatewayPageURL'], 'logo' => $sslcz['storeLogo'] ]);
 	} else {
-	   echo json_encode(['status' => 'FAILED', 'data' => null, 'message' => "JSON Data parsing error!"]);
+	   	$error = $sslcz['failedreason'];
+	   	echo json_encode(['status' => 'FAILED', 'data' => null, 'message' => $error]);
 	}
                             	
 
