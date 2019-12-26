@@ -26,20 +26,26 @@
 	$post_data['cus_country']   = $sslc_data['cus_country'];
 	$post_data['cus_phone']     = $sslc_data['cus_phone'];
 
-
-	$post_data['shipping_method']   = $sslc_data['shipping_method'];
 	$post_data['num_of_item']       = $sslc_data['num_of_item'];
 	$post_data['product_name']      = $sslc_data['product_name'];
 	$post_data['product_category']  = $sslc_data['product_category'];
 	$post_data['product_profile']   = $sslc_data['product_profile'];
 
 	# SHIPMENT INFORMATION
-	$post_data['ship_name']         = $sslc_data['ship_name'];
-	$post_data['ship_add1']        = $sslc_data['ship_add1'];
-	$post_data['ship_city']         = $sslc_data['ship_city'];
-	$post_data['ship_state']        = $sslc_data['ship_state'];
-	$post_data['ship_postcode']     = $sslc_data['ship_postcode'];
-	$post_data['ship_country']      = $sslc_data['ship_country'];
+	if($sslc_data['shipping_method'] == 'YES')
+	{
+		$post_data['shipping_method']   = $sslc_data['shipping_method'];
+		$post_data['ship_name']         = $sslc_data['ship_name'];
+		$post_data['ship_add1']        	= $sslc_data['ship_add1'];
+		$post_data['ship_city']         = $sslc_data['ship_city'];
+		$post_data['ship_state']        = $sslc_data['ship_state'];
+		$post_data['ship_postcode']     = $sslc_data['ship_postcode'];
+		$post_data['ship_country']      = $sslc_data['ship_country'];
+	}
+	else
+	{
+		$post_data['shipping_method']   = $sslc_data['shipping_method'];
+	}
 
 	# REQUEST SEND TO SSLCOMMERZ
 	$direct_api_url                 = $sslc_data['api_url'];
