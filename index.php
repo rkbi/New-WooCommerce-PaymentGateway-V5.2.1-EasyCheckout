@@ -197,7 +197,7 @@ function woocommerce_sslcommerz_init()
                     token="<?php echo $order;?>"
                     postdata=""
                     order="<?php echo $order;?>"
-                    endpoint="index.php?v4checkout">Pay Via SSLCommerz
+                    endpoint="<?php echo get_site_url(); ?>/index.php?v4checkout">Pay Via SSLCommerz
                 </button>
                 <button class="button cancel">Cancel</button>
                 <script type="text/javascript">
