@@ -108,12 +108,6 @@ function woocommerce_sslcommerz_init()
                     'options' => $this->get_pages( 'Select Fail / Cancel Page'),
                     'description' => "User will be redirected here if transaction fails or get canceled."
                 ),
-                'ipnurl' => array(
-                    'title' => __('IPN (Instant Payment Notification) URL', 'SSLWireless'),
-                    'type' => 'text',
-                    'default' => __(get_site_url(null, null, null) . '/index.php?sslcommerzipn', 'SSLWireless'),
-                    'description' => __('Copy this URL and set as "IPN URL" in your Merchant Panel.')
-                ),
             );
         }
         public function admin_options()
