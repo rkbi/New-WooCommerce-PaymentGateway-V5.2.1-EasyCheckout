@@ -17,6 +17,8 @@
 3. Move the whole directory to ```/wp-content/plugins/```
 4. Activate the plugin through the 'Plugins' menu in admin panel.
 
+**[NOTE]** This plugin will automatically set the IPN url, there is no need to set IPN in merchant panel when using this.
+
 ### Configuration
 
 1. Open Admin Panel.
