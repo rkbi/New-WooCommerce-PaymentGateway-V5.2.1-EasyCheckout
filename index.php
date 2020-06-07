@@ -193,7 +193,8 @@ function woocommerce_sslcommerz_init()
                     order="<?php echo $order;?>"
                     endpoint="<?php echo get_site_url(); ?>/index.php?v4checkout">Pay Via SSLCommerz
                 </button>
-                <button class="button cancel">Cancel</button>
+                <a href="../" class="button cancel">Cancel</a>
+
                 <script type="text/javascript">
                     var url = <?php echo "'$jsurl'"; ?>;
                     (function (window, document) {
